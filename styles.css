@@ -1,0 +1,50 @@
+body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f8fafc;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark, .dark body {
+            background-color: #0f172a; 
+        }
+        .dark .bg-white { background-color: #1e293b; }
+        .dark .bg-light-blue { background-color: #1e3a8a; }
+        .dark .text-primary-blue { color: #93c5fd; }
+        .dark .text-gray-700, .dark .text-gray-600, .dark .text-gray-500, .dark .text-gray-400 { color: #cbd5e1; } /* text-slate-300 */
+        .dark .bg-gray-100 { background-color: #334155; }
+        .dark .bg-gray-200 { background-color: #475569; }
+        .dark .border-gray-300 { border-color: #475569; }
+        .dark input, .dark select { background-color: #334155; color: #f1f5f9; border-color: #475569; }
+        .dark input::placeholder { color: #94a3b8; }
+        .dark .hover\:bg-gray-100:hover { background-color: #334155; }
+        .dark #main-title { color: #93c5fd; }
+
+        .bg-primary-blue { background-color: #0d47a1; }
+        .bg-secondary-blue { background-color: #1976d2; }
+        .bg-light-blue { background-color: #64b5f6; }
+        .text-primary-blue { color: #0d47a1; }
+        
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease-in-out; }
+            .sidebar.open { transform: translateX(0); }
+            .main-app.flex { margin-left: 0 !important; }
+            .menu-toggle { display: block; }
+        }
+        @media (min-width: 769px) {
+            .sidebar { position: relative; transform: translateX(0); flex-shrink: 0; }
+            .menu-toggle { display: none; }
+        }
+        .tab-content.hidden { display: none; }
+        .tab-content.active { display: block; }
+        .toggle-checkbox:checked { right: 0; border-color: #1976d2; } 
+        .toggle-checkbox:checked + .toggle-label { background-color: #1976d2; }
