@@ -11,31 +11,54 @@
 </head>
 <body class="bg-white">
 
-    <div id="login-screen" class="min-h-screen flex items-center justify-center bg-light-blue p-4">
-        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md text-center">
-            <div class="mb-6">
-                <div class="mx-auto mb-4 bg-secondary-blue text-white w-20 h-10 flex items-center justify-center rounded-lg">Logo</div>
-                <h1 class="text-4xl font-bold text-primary-blue">PontoCloud</h1>
+<div id="login-screen" class="min-h-screen flex items-center justify-center bg-light-blue p-4">
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md text-center">
+        <div class="mb-6">
+            <h1 class="text-4xl font-bold text-primary-blue">Registrar Ponto</h1>
+            <p class="text-gray-600 mt-2">Digite seu CPF para registrar a entrada ou saída.</p>
+        </div>
+        
+        <form id="ponto-login-form" class="space-y-6">
+            <div>
+                <input type="text" id="ponto-cpf" placeholder="Seu CPF aqui" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue">
             </div>
-            <form id="login-form" class="space-y-6">
-                <div><input type="text" id="login-email" placeholder="Login (usuário/email)" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue"></div>
-                <div><input type="password" id="login-password" placeholder="Senha" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue"></div>
-                <button type="submit" class="w-full bg-secondary-blue text-white p-3 rounded-lg font-semibold hover:bg-primary-blue transition duration-300 shadow-md">Entrar</button>
-            </form>
+            <button type="submit" class="w-full bg-secondary-blue text-white p-3 rounded-lg font-semibold hover:bg-primary-blue transition duration-300 shadow-md">Autenticar para Registrar</button>
+        </form>
+
+        <div class="mt-4">
+             <a href="#" id="admin-login-link" class="text-sm text-gray-500 hover:text-primary-blue">É um administrador? Faça login aqui.</a>
         </div>
     </div>
+</div>
+<div id="admin-login-screen" class="hidden min-h-screen flex items-center justify-center bg-light-blue p-4">
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md text-center">
+        <div class="mb-6">
+            <h1 class="text-4xl font-bold text-primary-blue">Login de Administrador</h1>
+        </div>
+        <form id="login-form" class="space-y-6">
+            <div><input type="email" id="login-email" placeholder="Email de administrador" class="w-full p-3 ..."></div>
+            <div><input type="password" id="login-password" placeholder="Senha" class="w-full p-3 ..."></div>
+            <button type="submit" class="w-full bg-secondary-blue text-white p-3 ...">Entrar</button>
+        </form>
+         <div class="mt-4">
+             <a href="#" id="employee-login-link" class="text-sm text-gray-500 hover:text-primary-blue">Registrar Ponto (Funcionário)</a>
+        </div>
+    </div>
+</div>
 
     <div id="main-app" class="hidden min-h-screen flex">
         <aside class="sidebar w-64 bg-primary-blue text-white p-6 flex flex-col shadow-lg z-50 fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0">
             <div class="flex-shrink-0 mb-8"><h2 class="text-3xl font-bold text-white text-center">PontoCloud</h2></div>
-            <nav class="flex-grow space-y-4">
-                <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="dashboard"><i class="fas fa-tachometer-alt mr-3 text-lg"></i><span class="text-lg">Painel de Controle</span></a>
-                <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="marcar-ponto"><i class="fas fa-clock mr-3 text-lg"></i><span class="text-lg">Marcar Ponto</span></a>
-                <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="historico-ponto"><i class="fas fa-history mr-3 text-lg"></i><span class="text-lg">Histórico de Ponto</span></a>
-                <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="cadastro-funcionarios"><i class="fas fa-users mr-3 text-lg"></i><span class="text-lg">Funcionários</span></a>
-                <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="relatorios"><i class="fas fa-chart-bar mr-3 text-lg"></i><span class="text-lg">Relatórios</span></a>
-                <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="configuracoes"><i class="fas fa-cog mr-3 text-lg"></i><span class="text-lg">Configurações</span></a>
-            </nav>
+               <nav class="flex-grow space-y-4">
+                    <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="dashboard"><i class="fas fa-tachometer-alt mr-3 text-lg"></i><span class="text-lg">Painel de Controle</span></a>
+                    <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="marcar-ponto"><i class="fas fa-clock mr-3 text-lg"></i><span class="text-lg">Marcar Ponto</span></a>
+                    <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="historico-ponto"><i class="fas fa-history mr-3 text-lg"></i><span class="text-lg">Histórico de Ponto</span></a>
+                    
+                    <a href="#" id="nav-funcionarios" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="cadastro-funcionarios"><i class="fas fa-users mr-3 text-lg"></i><span class="text-lg">Funcionários</span></a>
+                    <a href="#" id="nav-relatorios" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="relatorios"><i class="fas fa-chart-bar mr-3 text-lg"></i><span class="text-lg">Relatórios</span></a>
+                    
+                    <a href="#" class="nav-item flex items-center p-3 rounded-lg hover:bg-secondary-blue transition duration-200" data-target="configuracoes"><i class="fas fa-cog mr-3 text-lg"></i><span class="text-lg">Configurações</span></a>
+               </nav>
             <div class="flex-shrink-0 mt-8 pt-4 border-t border-blue-500">
                 <div class="flex items-center p-3">
                     <img id="user-avatar" src="https://placehold.co/40x40/64b5f6/ffffff?text=AS" alt="Avatar do Usuário" class="w-10 h-10 rounded-full mr-3 border-2 border-white">
@@ -74,30 +97,50 @@
                     <div class="bg-white p-6 rounded-xl shadow-lg"><h3 class="text-2xl font-semibold text-primary-blue mb-4">Últimos Registros de Ponto</h3><div class="overflow-x-auto"><table class="min-w-full bg-white"><thead><tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal"><th class="py-3 px-6 text-left">Data</th><th class="py-3 px-6 text-left">Horário</th><th class="py-3 px-6 text-left">Tipo</th><th class="py-3 px-6 text-left">Funcionário</th><th class="py-3 px-6 text-left">Status</th></tr></thead><tbody id="dashboard-records-table" class="text-gray-600 text-sm font-light"></tbody></table></div></div>
                 </section>
 
-                <section id="marcar-ponto" class="tab-content hidden flex flex-col items-center justify-center h-full text-center">
-                    <h2 class="text-5xl font-bold text-primary-blue mb-4" id="current-time">00:00:00</h2>
-                    <button id="punch-button" class="bg-secondary-blue text-white p-6 rounded-xl text-3xl font-bold hover:bg-primary-blue transition duration-300 shadow-lg transform hover:scale-105">Marcar Ponto Agora</button>
-                    <p class="text-xl text-gray-700 mt-6" id="next-record-info">Próximo registro esperado: ...</p>
-                    <p class="text-lg text-gray-500 mt-2" id="last-record-status">Último registro: Nenhum.</p>
-                </section>
+                <section id="marcar-ponto" class="tab-content hidden">
+    <div class="bg-white p-6 rounded-xl shadow-lg max-w-lg mx-auto">
+        <h3 class="text-2xl font-semibold text-primary-blue mb-6 text-center">Registrar Ponto Manualmente</h3>
+        <form id="ponto-form" class="space-y-6">
+            <div>
+                <label for="ponto-funcionario-id" class="block text-gray-700 text-sm font-bold mb-2">Funcionário</label>
+              <select id="ponto-funcionario-id" class="employee-select w-full p-3 border border-gray-300 rounded-lg" required>
+                    <option value="">Selecione um funcionário...</option>
+              </select>
+            </div>
+            <div>
+                <label for="ponto-tipo" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Registro</label>
+                <select id="ponto-tipo" class="w-full p-3 border border-gray-300 rounded-lg" required>
+                    <option value="entrada">Entrada</option>
+                    <option value="intervalo_inicio">Início do Intervalo</option>
+                    <option value="intervalo_fim">Fim do Intervalo</option>
+                    <option value="saida">Saída</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <div class="text-5xl font-bold text-primary-blue mb-4" id="current-time">00:00:00</div>
+                <button type="submit" class="w-full bg-secondary-blue text-white p-4 rounded-lg text-xl font-bold hover:bg-primary-blue transition duration-300 shadow-lg">Registrar Ponto</button>
+            </div>
+        </form>
+    </div>
+</section>
 
-                <section id="historico-ponto" class="tab-content hidden">
-                    <div class="bg-white p-6 rounded-xl shadow-lg">
-                        <h3 class="text-2xl font-semibold text-primary-blue mb-4">Histórico de Ponto</h3>
-                        <div class="flex flex-wrap items-center gap-4 mb-6">
-                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition duration-200">Hoje</button>
-                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition duration-200">Semana</button>
-                            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition duration-200">Mês</button>
-                            <input type="date" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary-blue">
-                            <div class="ml-auto flex gap-2">
-                                <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-200"><i class="fas fa-file-pdf mr-2"></i>Exportar PDF</button>
-                                <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200"><i class="fas fa-file-excel mr-2"></i>Exportar Excel</button>
-                            </div>
-                        </div>
-                        <div class="overflow-x-auto"><table class="min-w-full bg-white"><thead><tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal"><th class="py-3 px-6 text-left">Data</th><th class="py-3 px-6 text-left">Hora</th><th class="py-3 px-6 text-left">Tipo de Registro</th><th class="py-3 px-6 text-left">Funcionário</th><th class="py-3 px-6 text-left">Status</th></tr></thead><tbody id="history-table-body" class="text-gray-600 text-sm font-light"></tbody></table></div>
-                    </div>
-                </section>
-
+   <section id="historico-ponto" class="tab-content hidden">
+    <div class="bg-white p-6 rounded-xl shadow-lg">
+        <h3 class="text-2xl font-semibold text-primary-blue mb-4">Histórico de Ponto</h3>
+        <form id="historico-form" class="flex flex-wrap items-center gap-4 mb-6">
+            <select id="historico-funcionario-select" class="employee-select p-2 border border-gray-300 rounded-lg">
+                <option>Selecione um Funcionário</option>
+            </select>
+            <button type="submit" class="bg-secondary-blue text-white px-4 py-2 rounded-lg hover:bg-primary-blue">Buscar Histórico</button>
+            <div class="ml-auto flex gap-2">
+                </div>
+        </form>
+        <div class="overflow-x-auto"><table class="min-w-full bg-white"><thead><tr class="bg-gray-200 ..."><th ...>Data</th><th ...>Hora</th><th ...>Tipo de Registro</th><th ...>Funcionário</th><th ...>Status</th></tr></thead><tbody id="history-table-body" class="text-gray-600 ..."></tbody></table></div>
+    </div>
+</section>
+        ...
+    </div>
+</section>
                 <section id="cadastro-funcionarios" class="tab-content hidden">
                     <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
                         <h3 id="employee-form-title" class="text-2xl font-semibold text-primary-blue mb-4">Cadastrar Novo Funcionário</h3>
@@ -120,23 +163,19 @@
                         <div class="overflow-x-auto"><table class="min-w-full bg-white"><thead><tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal"><th class="py-3 px-6 text-left">Nome</th><th class="py-3 px-6 text-left">E-mail</th><th class="py-3 px-6 text-left">Matrícula</th><th class="py-3 px-6 text-left">Cargo</th><th class="py-3 px-6 text-left">Turno</th><th class="py-3 px-6 text-center">Ações</th></tr></thead><tbody id="employees-table-body" class="text-gray-600 text-sm font-light"></tbody></table></div>
                     </div>
                 </section>
-                
                 <section id="relatorios" class="tab-content hidden">
-                     <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
-                        <h3 class="text-2xl font-semibold text-primary-blue mb-4">Relatórios de Ponto</h3>
-                        <div class="flex flex-wrap gap-4 mb-6">
-                            <select class="p-2 border border-gray-300 rounded-lg"><option>Filtrar por Data</option></select>
-                            <select class="p-2 border border-gray-300 rounded-lg"><option>Filtrar por Funcionário</option></select>
-                            <select class="p-2 border border-gray-300 rounded-lg"><option>Filtrar por Setor</option></select>
-                            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-200 ml-auto"><i class="fas fa-download mr-2"></i>Exportar Gráficos</button>
+                    <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                        <h3 class="text-2xl font-semibold text-primary-blue mb-4">Gerar Espelho de Ponto (PDF)</h3>
+                        <form id="relatorios-form" class="flex flex-wrap gap-4 mb-6">
+                            <select id="relatorio-funcionario-select" class="employee-select p-2 border border-gray-300 rounded-lg">
+                                <option>Selecione um Funcionário</option>
+                            </select>
+                            <input type="month" id="relatorio-mes-ano" class="p-2 border border-gray-300 rounded-lg" required>
+                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                <i class="fas fa-file-pdf mr-2"></i>Gerar PDF
+                            </button>
+                        </form>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-64 text-gray-500">[Gráfico: Total de horas por funcionário]</div>
-                            <div class="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-64 text-gray-500">[Gráfico: Atrasos]</div>
-                            <div class="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-64 text-gray-500">[Gráfico: Horas extras]</div>
-                            <div class="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-64 text-gray-500">[Gráfico: Média de presença por setor]</div>
-                        </div>
-                    </div>
                 </section>
 
                 <section id="configuracoes" class="tab-content hidden">
