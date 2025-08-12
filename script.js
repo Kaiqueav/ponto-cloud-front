@@ -257,6 +257,58 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) { showMessage(error.message, 'error'); }
     }
+    async function gerarRelatorio(event) {
+    event.preventDefault(); // O passo mais importante: impede o redirecionamento!
+
+    const funcionarioId = document.getElementById('relatorio-funcionario-select').value;
+    const mesAno = document.getElementById('relatorio-mes-ano').value;
+
+    if (!funcionarioId || !mesAno) {
+        showMessage('Por favor, selecione um funcionário e o mês/ano.', 'error');
+        return;
+    }
+
+    const [ano, mes] = mesAno.split('-');
+
+    try {
+        const headers = getAuthHeaders();
+        // Remove 'Content-Type' para downloads de ficheiros, pois não estamos a enviar JSON
+        delete headers['Content-Type']; 
+
+        const response = await fetch(`${API_URL}/relatorios/espelho-ponto/funcionario/${funcionarioId}/pdf?ano=${ano}&mes=${mes}`, {
+            method: 'GET',
+            headers: headers,
+        });
+
+        if (!response.ok) {
+            throw new Error('Falha ao gerar o relatório. Verifique os dados.');
+        }
+
+        // Converte a resposta num blob (um objeto de ficheiro)
+        const pdfBlob = await response.blob();
+        
+        // Cria uma URL temporária para o ficheiro
+        const url = window.URL.createObjectURL(pdfBlob);
+        
+        // Cria um link invisível para iniciar o download
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `espelho-ponto-${ano}-${mes}-func${funcionarioId}.pdf`; // Nome do ficheiro
+        
+        document.body.appendChild(a);
+        a.click(); // Simula o clique no link para abrir a janela de download
+        
+        // Limpa a URL temporária da memória
+        window.URL.revokeObjectURL(url);
+        a.remove();
+        
+        showMessage('Download do relatório iniciado!');
+
+    } catch (error) {
+        showMessage(error.message, 'error');
+    }
+}
     
     // --- EVENT LISTENERS E INICIALIZAÇÃO ---
     if (loginForm) loginForm.addEventListener('submit', adminLogin);
@@ -265,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (employeeForm) employeeForm.addEventListener('submit', cadastrarFuncionario);
     if (pontoForm) pontoForm.addEventListener('submit', registrarPonto);
     if (historicoForm) historicoForm.addEventListener('submit', (e) => { /* Chamar carregarHistorico aqui */ });
-    if (relatoriosForm) relatoriosForm.addEventListener('submit', (e) => { /* Chamar gerarRelatorio aqui */ });
+    if (relatoriosForm) relatoriosForm.addEventListener('submit', gerarRelatorio);
 
     if (adminLoginLink) adminLoginLink.addEventListener('click', (e) => { e.preventDefault(); loginScreen.classList.add('hidden'); adminLoginScreen.classList.remove('hidden'); });
     if (employeeLoginLink) employeeLoginLink.addEventListener('click', (e) => { e.preventDefault(); adminLoginScreen.classList.add('hidden'); loginScreen.classList.remove('hidden'); });
